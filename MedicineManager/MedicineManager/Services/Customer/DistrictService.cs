@@ -89,11 +89,7 @@ namespace MedicineManager.Services.Customer
         {
             var c = await ValidateRequest(city_id);
             if (!c.isSuccess) {
-                return new ReponseDto
-                {
-                    Message = $"Not exist city with id={city_id}",
-                    isSuccess = false
-                };
+                return c;
             }
             var district = await _repo.getByCityId(city_id);
             if(district.Count==0)
@@ -128,7 +124,7 @@ namespace MedicineManager.Services.Customer
                 Message = $"Get city suceess",
                 isSuccess = true,
                 Data = c
-            }; ;
+            }; 
         }
         public async Task<ReponseDto> DeleteDistrict(int id)
         {

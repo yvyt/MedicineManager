@@ -15,7 +15,7 @@ namespace MedicineManager.Data
         public string Name { get; set; } = null!;
         public int DistrictId { get; set; }
 
-        [JsonIgnore] public virtual District District { get; set; } = null!;
+        public virtual District District { get; set; } = null!;
         [JsonIgnore] public virtual ICollection<Address> Addresses { get; set; }
     }
 }

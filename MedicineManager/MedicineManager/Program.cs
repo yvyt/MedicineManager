@@ -4,13 +4,14 @@ using MedicineManager.Data;
 using MedicineManager.Services.Customer;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddEntityFrameworkNpgsql()
@@ -25,6 +26,7 @@ builder.Services.AddScoped<AddressServices>();
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<CityServices>();
 builder.Services.AddScoped<DistrictService>();
+builder.Services.AddScoped<WardServices>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 var app = builder.Build();
 

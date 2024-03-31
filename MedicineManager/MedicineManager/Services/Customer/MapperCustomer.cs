@@ -11,6 +11,7 @@ namespace MedicineManager.Services.Customer
             CreateMap<UserRequest, User>();
             CreateMap<CityRequest,City>();
             CreateMap<DistrictRequest, District>();
+            CreateMap<WardRequest,  Ward>();
         }
     }
 }
